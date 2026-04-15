@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: Academia Gondor 5B
+  datasource:
+    url: jdbc:mysql://localhost:3306/academia_gondor?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: 
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    com.academiagondor: DEBUG
