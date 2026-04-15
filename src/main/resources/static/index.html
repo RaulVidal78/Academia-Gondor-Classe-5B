@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia Gondor 5B - Un anell per poder apendre tots junts</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="header-title">
+                <i class="fas fa-crown gondor-icon"></i>
+                <h1 class="golden-title">Academia Gondor 5B</h1>
+            </div>
+            <p class="motto">"Un anell per poder apendre tots junts"</p>
+        </div>
+        <div class="header-controls">
+            <button id="theme-toggle" class="btn-control" title="Canviar tema">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button id="volume-toggle" class="btn-control" title="Volum">
+                <i class="fas fa-volume-up"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="nav-tabs-container">
+        <ul class="nav-tabs">
+            <li><a href="#" data-tab="dashboard" class="nav-link active"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="#" data-tab="recruitment" class="nav-link"><i class="fas fa-users"></i> Reclutament</a></li>
+            <li><a href="#" data-tab="ranking" class="nav-link"><i class="fas fa-trophy"></i> Rànquing</a></li>
+            <li><a href="#" data-tab="gallery" class="nav-link"><i class="fas fa-image"></i> Galeria</a></li>
+            <li><a href="#" data-tab="statistics" class="nav-link"><i class="fas fa-chart-bar"></i> Estadístiques</a></li>
+            <li><a href="#" data-tab="customization" class="nav-link"><i class="fas fa-palette"></i> Personalització</a></li>
+            <li><a href="#" data-tab="settings" class="nav-link"><i class="fas fa-cog"></i> Ajustaments</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TAB: DASHBOARD -->
+        <section id="dashboard" class="tab-content active">
+            <div class="dashboard-header">
+                <h2>Panell de Control</h2>
+                <p>Gestiona els punts dels 21 alumnes</p>
+            </div>
+            <div class="flip-cards-container" id="cardsContainer">
+                <!-- Les tarjetes es generen dinàmicament amb JavaScript -->
+            </div>
+        </section>
+
+        <!-- TAB: RECRUITMENT -->
+        <section id="recruitment" class="tab-content">
+            <div class="section-header">
+                <h2><i class="fas fa-user-plus"></i> Reclutament d'Alumnat</h2>
+            </div>
+            <div class="recruitment-content">
+                <form id="addStudentForm" class="add-student-form">
+                    <input type="text" id="studentName" placeholder="Nom de l'alumne" required>
+                    <select id="studentGender" required>
+                        <option value="">Selecciona gènere</option>
+                        <option value="chico">Noi</option>
+                        <option value="chica">Noia</option>
+                    </select>
+                    <button type="submit" class="btn-primary">Afegir Alumne</button>
+                </form>
+                <div id="studentsList" class="students-list">
+                    <!-- Es llista dinàmicament els alumnes -->
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB: RANKING -->
+        <section id="ranking" class="tab-content">
+            <div class="section-header">
+                <h2><i class="fas fa-trophy"></i> Rànquing de Punts</h2>
+            </div>
+            <div class="ranking-content">
+                <table class="ranking-table">
+                    <thead>
+                        <tr>
+                            <th>Posició</th>
+                            <th>Nom</th>
+                            <th>Gènere</th>
+                            <th>Punts</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rankingBody">
+                        <!-- Es completa dinàmicament -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- TAB: GALLERY -->
+        <section id="gallery" class="tab-content">
+            <div class="section-header">
+                <h2><i class="fas fa-image"></i> Galeria de Fotos</h2>
+            </div>
+            <div class="gallery-content">
+                <div class="gallery-upload">
+                    <input type="file" id="photoUpload" accept="image/*">
+                    <button id="uploadBtn" class="btn-primary">Pujar Foto</button>
+                </div>
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Es mostren les fotos dels alumnes -->
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB: STATISTICS -->
+        <section id="statistics" class="tab-content">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-bar"></i> Estadístiques</h2>
+            </div>
+            <div class="statistics-content">
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <h3>Total Alumnes</h3>
+                        <p id="totalStudents" class="stat-value">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Punts Totals</h3>
+                        <p id="totalPoints" class="stat-value">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Promedi Punts</h3>
+                        <p id="averagePoints" class="stat-value">0</p>
+                    </div>
+                </div>
+                <div class="charts-container">
+                    <canvas id="pointsChart"></canvas>
+                    <canvas id="genderChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB: CUSTOMIZATION -->
+        <section id="customization" class="tab-content">
+            <div class="section-header">
+                <h2><i class="fas fa-palette"></i> Personalització</h2>
+            </div>
+            <div class="customization-content">
+                <div class="custom-section">
+                    <h3>Text del Títol</h3>
+                    <input type="text" id="titleCustom" placeholder="Personalitza el títol" value="Academia Gondor 5B">
+                    <button class="btn-secondary" onclick="updateTitle()">Actualitzar Títol</button>
+                </div>
+                <div class="custom-section">
+                    <h3>Lema de la App</h3>
+                    <input type="text" id="mottoCustom" placeholder="Personalitza el lema" value="Un anell per poder apendre tots junts">
+                    <button class="btn-secondary" onclick="updateMotto()">Actualitzar Lema</button>
+                </div>
+                <div class="custom-section">
+                    <h3>Color Principal</h3>
+                    <input type="color" id="primaryColor" value="#FFD700">
+                    <button class="btn-secondary" onclick="updateColors()">Aplicar Color</button>
+                </div>
+                <div class="custom-section">
+                    <h3>Color de Fons</h3>
+                    <input type="color" id="bgColor" value="#1a1a1a">
+                    <button class="btn-secondary" onclick="updateColors()">Aplicar Color de Fons</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB: SETTINGS -->
+        <section id="settings" class="tab-content">
+            <div class="section-header">
+                <h2><i class="fas fa-cog"></i> Ajustaments</h2>
+            </div>
+            <div class="settings-content">
+                <div class="setting-item">
+                    <label for="volumeSlider">Volum del So:</label>
+                    <input type="range" id="volumeSlider" min="0" max="100" value="50">
+                    <span id="volumeValue">50%</span>
+                </div>
+                <div class="setting-item">
+                    <label for="fontSizeSelect">Mida de Font:</label>
+                    <select id="fontSizeSelect" onchange="updateFontSize()">
+                        <option value="small">Petita</option>
+                        <option value="medium" selected>Mitjana</option>
+                        <option value="large">Gran</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label for="fontFamilySelect">Tipus de Lletra:</label>
+                    <select id="fontFamilySelect" onchange="updateFontFamily()">
+                        <option value="Arial">Arial</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Courier New">Courier New</option>
+                        <option value="Verdana">Verdana</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label for="brightnessSlider">Brillantor:</label>
+                    <input type="range" id="brightnessSlider" min="50" max="150" value="100">
+                    <span id="brightnessValue">100%</span>
+                </div>
+                <div class="setting-item">
+                    <button class="btn-danger" onclick="resetData()">Restablir Dades</button>
+                    <button class="btn-primary" onclick="exportData()">Exportar Dades</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL per a Afegir/Restar Punts -->
+    <div id="pointsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Gestionar Punts</h2>
+            <div class="modal-body">
+                <div class="point-input-group">
+                    <label>Punts Actuals:</label>
+                    <p id="currentPoints" class="modal-value">0</p>
+                </div>
+                <div class="point-input-group">
+                    <label for="pointsAmount">Quantitat:</label>
+                    <input type="number" id="pointsAmount" min="1" value="1">
+                </div>
+                <div class="modal-buttons">
+                    <button id="addBtn" class="btn-success">+ Afegir Punts</button>
+                    <button id="subtractBtn" class="btn-danger">- Restar Punts</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Academia Gondor 5B - Gondor Education System</p>
+    </footer>
+
+    <script src="js/sounds.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/tabs.js"></script>
+</body>
+</html>
